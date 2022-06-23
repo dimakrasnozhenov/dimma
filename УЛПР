@@ -1,0 +1,310 @@
+using System;
+namespace ulpr1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const int p = 1030;
+            Console.Write("X литров молока = ");
+            int x = int.Parse(Console.ReadLine());
+            double v;
+            double m;
+            v = x * 0.001;
+            m = v * p;
+            Console.Write($"Масса {x} литров молока равна {m}");
+        }
+    }
+}
+
+
+using System;
+namespace ulpr2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите число a = ");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write("Введите число b = ");
+            int b = int.Parse(Console.ReadLine());
+            Console.Write("Введите число c = ");
+            int c = int.Parse(Console.ReadLine());
+            if (a < b && b < c)
+                Console.WriteLine("{0} < {1} < {2} = True", a, b, c);
+            else
+                Console.WriteLine("{0} < {1} < {2} = False", a, b, c);
+        }
+    }
+}
+
+
+using System;
+namespace ulpr3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] array = new int[10];
+            Random rand = new Random();
+            for (int i = 0; i < array.Length; i++)
+                array[i] = rand.Next(-100, 100);
+            Console.WriteLine("Введите число x");
+            int x = int.Parse(Console.ReadLine());
+            bool flag = false;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == x)
+                {
+                    Console.WriteLine("Да ваше число совпадает с числом из массива!");
+                    flag = true;
+                }
+            }
+            if (!flag)
+                Console.WriteLine("Такого числа нет!!!");
+        }
+    }
+}
+
+
+using System;
+namespace ulpr4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число = ");
+            long N = long.Parse(Console.ReadLine());
+            long s = 0;
+            while (N > 0)
+            {
+                if (N % 2 == 0)
+                {
+                    s = s + N % 10;
+                }
+                N = N / 10;
+            }
+            Console.WriteLine("Сумма четных цифр числа = " + s);
+
+        }
+    }
+}
+
+
+using System;
+namespace ulpr5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int summ = 0;
+            int k = 1;
+            while (k != 0)
+            {
+                Console.WriteLine("Введите число последовательности, если хотите завершить, введите 0: ");
+                k = int.Parse(Console.ReadLine());
+                summ = summ + k;
+            }
+            Console.WriteLine("Сумма последовательности: " + summ);
+            Console.ReadLine();
+
+
+        }
+    }
+}
+
+
+using System;
+namespace ulpr6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i;
+            for (i = 100; i <= 200; i++)
+            {
+                if (i % 3 == 0)
+                    Console.WriteLine(i);
+            }
+        }
+    }
+}
+
+
+using System.Globalization;
+GregorianCalendar calendar = new GregorianCalendar();
+DateOnly dt;
+DateTime dt2;
+int countday, number;
+string data = Console.ReadLine();
+if (DateTime.TryParse(data, out dt2))
+{
+    dt = DateOnly.FromDateTime(dt2);
+    Console.WriteLine($"Вы ввели: {dt}");
+    number = calendar.GetDayOfYear(dt2);
+    Console.WriteLine($"Номер дня с начала года: {number}");
+    int year = dt.Year;
+    if (calendar.IsLeapYear(year))
+    {
+        countday = 366 - number;
+    }
+    else
+    {
+        countday = 365 - number;
+    }
+    Console.WriteLine($"Дней до конца года: {countday}");
+}
+else
+{
+    Console.WriteLine("Такая дата не существует");
+}
+
+
+DateOnly dt2 = new DateOnly();
+Console.Write("Введите день: ");
+
+int day = int.Parse(Console.ReadLine());
+Console.Write("Введите месяц: ");
+int month = int.Parse(Console.ReadLine());
+Console.Write("Введите год: ");
+int year = int.Parse(Console.ReadLine());
+DateOnly dt = new DateOnly(year, month, day);
+dt2 = dt.AddDays((year / 100) - ((year / 100) / 4) - 2);
+Console.WriteLine($"Дата по Юлианскому календарю: {dt}");
+Console.WriteLine($"Дата по Грегорианскому календарю: {dt2}");
+
+
+using System.Security.Cryptography;
+class Program
+{
+    public static byte RND()
+    {
+        RNGCryptoServiceProvider Rand = new RNGCryptoServiceProvider();
+        byte[] randomNumber = new byte[1];
+        Rand.GetBytes(randomNumber);
+        return (randomNumber[0]);
+    }
+
+    static void Main (string[] args)
+    {
+        for(int i = 0; i < 100; i++)
+        {
+            double R = RND();
+            Console.Write(R);
+            Console.Write(" ");
+        }
+        Console.ReadLine();
+    }
+}
+
+
+Console.WriteLine("Введите число");
+int n = int.Parse(Console.ReadLine());
+for(int i = 1; i < 1000; i++)
+{
+    int i1 = i * i;
+    for(int j = 1; j < 1000; j++)
+    {
+        int j1= j * j;
+        for(int d = 1; d < 1000; d++)
+        {
+            int d1= d * d;
+            int i1j1 = i1 + j1;
+            if(i1j1==d1)
+            {
+                double S = (i * j) / 2;
+                if (n > S)
+                {
+                    Console.WriteLine($"Треугольник со сторонами a={i} b={j} c={d}");
+                    Console.WriteLine($"Площадь треугольника S={S}");
+                }
+                if (n < S)
+                {
+                    goto frayr;
+                }
+            }
+        }
+    }
+}
+frayr;
+Console.WriteLine();
+
+
+Random rand = new Random();
+int start = 1;
+Console.WriteLine("Введите число, до которого загадывать:");
+int limit = int.Parse(Console.ReadLine());
+int rn1 = rand.Next(start, limit);
+int rn2 = rand.Next(1, limit - 1);
+Console.WriteLine($"Количество попыток:{rn2}");
+for (int i = 1; i <= rn2; i++)
+{
+    Console.WriteLine($"Введите число из диапозона от 1 до {limit}:");
+    int vvod = int.Parse(Console.ReadLine());
+    if (i == rn2)
+    {
+        Console.WriteLine("Не угадали. Попытки закончились.");
+        Console.WriteLine($"Число: {rn1}");
+    }
+    else
+    {
+        if (vvod < rn1)
+        {
+            Console.WriteLine($"Не угадали. Загаданное число больше.Осталось попыток: { rn2 - i} ");
+           
+        }
+        if (vvod > rn1)
+    {
+            Console.WriteLine($"Не угадали. Загаданное число меньше.Осталось попыток: { rn2 - i} ");
+           
+ }
+        if (vvod == rn1)
+        {
+            Console.WriteLine("Угадали!");
+            return;
+        }
+    }
+}
+
+
+Random rand = new Random();
+int start = 1;
+Console.WriteLine("Введите число, до которого загадывать:");
+int limit = int.Parse(Console.ReadLine());
+int rn1 = rand.Next(start, limit);
+int rn2 = rand.Next(1, limit - 1);
+Console.WriteLine($"Количество попыток:{rn2}");
+for (int i = 1; i <= rn2; i++)
+{
+    Console.WriteLine($"Введите число из диапозона от 1 до {limit}:");
+    int vvod = int.Parse(Console.ReadLine());
+    if (i == rn2)
+    {
+        Console.WriteLine("Не угадали. Попытки закончились.");
+        Console.WriteLine($"Число: {rn1}");
+    }
+    else
+    {
+        if (vvod < rn1)
+        {
+            Console.WriteLine($"Не угадали. Загаданное число больше.Осталось попыток: { rn2 - i} ");
+           
+        }
+        if (vvod > rn1)
+    {
+            Console.WriteLine($"Не угадали. Загаданное число меньше.Осталось попыток: { rn2 - i} ");
+           
+ }
+        if (vvod == rn1)
+        {
+            Console.WriteLine("Угадали!");
+            return;
+        }
+    }
+}
